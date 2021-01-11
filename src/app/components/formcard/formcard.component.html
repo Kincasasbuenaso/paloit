@@ -1,0 +1,39 @@
+<form class="top-custom" [formGroup]="formCard">
+    <div class="mb-3 ">
+
+
+      <label for="exampleInputEmail1" class="form-label">Card Number</label>
+      <input 
+        autocomplete="off"
+        type="number" 
+        class="form-control" 
+        id="exampleInputEmail1" 
+        formControlName="cardNumber" 
+        required>
+
+
+        <div *ngIf="!f.cardNumber.valid && f.cardNumber.touched" class="is-invalid">
+            *Numero de tarjeta requerido
+        </div>
+        <div *ngIf="f.cardNumber.errors?.minlength && f.cardNumber.touched" class="is-invalid">
+            *Minimo 14 digitós.
+        </div>
+        <div *ngIf="f.cardNumber.errors?.maxlength && f.cardNumber.touched" class="is-invalid">
+            *Maximo 14 digitós.
+        </div>
+
+      
+    </div>
+
+    <div class="text-center">
+        <button 
+            [disabled]="formCard.invalid"
+            class="btn btn-secondary text-center mg-top-40 color-black" 
+            (click)="calcularNumerodeLaSuerte(f)">Calcular Numero de la suerte</button>
+    </div>
+    
+
+  </form>
+  <p class="mg-top-40 text-center">
+      <strong>Numero de la suerte:</strong> {{ NumeroSuerte }}
+  </p>
